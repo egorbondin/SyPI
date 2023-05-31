@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7" style="padding-top: 130px;">
+          {% for post in posts reversed %}
+            <div class="post-preview">
+              <a href="{% url 'single_post' pk=post.id%}">
+                  <h2 class="post-title">{{ post.title }}</h2>
+                  <h3 class="post-subtitle">{{ post.get_short_content }}</h3>
+              </a>
+              <p class="post-meta">
+                  От
+                  <a href="{% url 'user_page' pk=post.author.pk %}">{{ post.author }}</a>
+              </p>
+              <p class="post-meta">{{ post.created_at }}</p>
+              <h3 style="color: red;">♡ {{ post.get_likes_count }}</h3>
+              <p class="post-meta" style="font-size: 7pt; margin: 0px;">{{ post.post_type }}</p>
+                
+              <hr><br>
+          </div>
+          {% empty %}
+              <h1>Нет постов</h1>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

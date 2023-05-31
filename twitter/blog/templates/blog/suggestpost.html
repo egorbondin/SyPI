@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3 style="margin-top: 150px;">{{ type }} пост</h3>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="title">Заголовок:</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Введите заголовок" required>
+      </div>
+      <div class="form-group">
+        <label for="content">Текст:</label>
+        <textarea class="form-control" id="content" name="content" rows="5" placeholder="Введите текст" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 10px">Отправить</button>
+    </form>
+  </div>
+{% endblock %}
